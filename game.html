@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>x86.1110.asm/28Assembly</title>
+  <link rel="icon" type="image/png" href="map.png" />
+  <style>
+    body {
+      background-color: #333333;
+      margin: 0;
+      padding: 0;
+    }
+    #loc {
+      color: white;
+      font-family: 'Comic Sans MS', sans-serif;
+      white-space: pre-line;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="loc"></h1>
+  <canvas id="cnvs"></canvas>
+
+  <audio id="background-music" loop></audio>
+  <audio id="sfx"></audio>
+
+  <script src="https://unpkg.com/kontra/kontra.min.js"></script>
+  <script>
+    const canvas = document.getElementById("cnvs");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener("keydown", () => {
+      const bgAudio = document.getElementById("background-music");
+      const sfxAudio = document.getElementById("sfx");
+      bgAudio.muted = false;
+      sfxAudio.muted = false;
+      bgAudio.pause();
+      bgAudio.currentTime = 0;
+      bgAudio.play().catch(() => {});
+    }, { once: true });
+  </script>
+
+  <script type="module" src="extraStuff.js"></script>
+  <script type="module" src="imgs.js"></script>
+  <script type="module" src="controls.js"></script>
+</body>
+</html>
