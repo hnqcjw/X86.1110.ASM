@@ -305,7 +305,9 @@ if (battlemode === 1) {
         invincible = 1;
         state.hp -= 10;
         if (state.hp === 0) {
-          level--;
+          if (level !== 0) {
+            level--;
+          }
           localStorage.setItem('value', level)
           location.reload();
         }
