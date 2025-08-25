@@ -1,7 +1,7 @@
 /*
 controls.js
 including kontra.js
-developed by k28
+developed by hnqcjw
 */
 
 const { initKeys, keyPressed } = kontra;
