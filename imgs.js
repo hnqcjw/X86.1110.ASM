@@ -272,26 +272,32 @@ Promise.all([
 
     function checkx() {
         if (level !== 20) {
-            if (mapSprite.x > 5420)
+            if (mapSprite.x > 5420) {
                 stuckright = 1;
-            stuckleft = 0;
-            else if (mapSprite.x < -4000)
+                stuckleft = 0;
+            }
+            else if (mapSprite.x < -4000) {
                 stuckleft = 1;
-            stuckright = 0;
-            else
                 stuckright = 0;
-            stuckleft = 0;
+            }
+            else {
+                stuckright = 0;
+                stuckleft = 0;
+            }
         }
     }
 
     function checky() {
         if (level !== 20) {
-            if (mapSprite.y > 3930) stuckup = 1;
-            stuckdown = 0;
-            else if (mapSprite.y < -3100) stuckdown = 1;
-            stuckup = 0;
-            else stuckup = 0;
-            stuckdown = 0;
+            if (mapSprite.y > 3930) {
+            	stuckup = 1; stuckdown = 0;
+            }
+            else if (mapSprite.y < -3100) {
+            	stuckdown = 1; stuckup = 0;
+            }
+            else {
+            	stuckup = 0; stuckdown = 0;
+            }
         }
     }
 
