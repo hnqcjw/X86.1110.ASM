@@ -156,36 +156,41 @@ Promise.all([
         }, 8000);
     }
 
-    const fixSprite = Button({
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        scaleX: 5,
-        scaleY: 5,
-        image: fixImage,
-        onDown: function() {
-            fix();
-            fixSpriteClicked = true;
-            timesFixed++;
-            fixSprite.opacity = 0.5;
-            console.log(timesFixed);
+const fixSprite = Button({
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    scaleX: 5,
+    scaleY: 5,
+    image: fixImage,
+    onDown: function() {
+        fix();
+        fixSpriteClicked = true;
+        timesFixed++;
+        fixSprite.opacity = 1;
+        console.log(timesFixed);
 
-            if (timesFixed === 4) {
-                victory = true;
-                if (level !== 20) {
-                    level++;
-                } else {
-                    level = 20;
-                }
-                localStorage.setItem('value', level + '');
-                playSound("victory.ogg");
-                setTimeout(() => {
-                    victory = 0;
-                    location.reload();
-                }, 1000);
-                fixSpriteClicked = false;
+        if (timesFixed === 4) {
+            victory = 1;
+            if (level !== 20) {
+                level++;
+            } else {
+                level = 20;
             }
+            localStorage.setItem('value', level + '');
+            playSound("victory.ogg");
+            setTimeout(() => {
+                victory = 0;
+                location.reload();
+            }, 1000);
+        } else {
+            // Reset fixSpriteClicked after 1 second so it can appear again
+            setTimeout(() => {
+                fixSpriteClicked = false;  // Allow the button to appear again after 1 second
+            }, 1000);
         }
-    })
+    }
+});
+
 
     function cloneSprite() {
         return Sprite({
@@ -274,33 +279,34 @@ Promise.all([
         if (level !== 20) {
             if (mapSprite.x > 5420) {
                 stuckright = 1;
-                stuckleft = 0;
+            	stuckleft = 0;
             }
             else if (mapSprite.x < -4000) {
-                stuckleft = 1;
+	            stuckleft = 1;
+	            stuckright = 0;
+	        }
+            else
                 stuckright = 0;
-            }
-            else {
-                stuckright = 0;
-                stuckleft = 0;
-            }
+            stuckleft = 0;
         }
     }
 
     function checky() {
         if (level !== 20) {
-            if (mapSprite.y > 3930) {
-            	stuckup = 1; stuckdown = 0;
+            if (mapSprite.y > 3930){
+	            stuckup = 1;
+	            stuckdown = 0;
             }
             else if (mapSprite.y < -3100) {
-            	stuckdown = 1; stuckup = 0;
+            	stuckdown = 1;
+            	stuckup = 0;
             }
             else {
-            	stuckup = 0; stuckdown = 0;
-            }
+	            stuckup = 0;
+	            stuckdown = 0;
         }
     }
-
+}
     function checkEdgeX() {
         if (playerSprite.x < -60) {
             playerSprite.x = 1450;
@@ -319,7 +325,6 @@ Promise.all([
 
     let loopedAround = 0;
     let invincible = 0;
-
     const loop = GameLoop({
         update() {
             updateMovement();
