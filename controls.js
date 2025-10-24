@@ -13,7 +13,7 @@ import {
     stuckdown,
     stuckleft,
     stuckright
-} from './imgs.js';
+} from './main.js';
 
 initKeys();
 

@@ -22,7 +22,7 @@ export function playSound(soundFile) {
 }
 
 
-import * as gameState from './imgs.js';
+import * as gameState from './main.js';
 setInterval(() => {
     if (gameState.battlemode === 1 && currentSong !== "FIGHT.ogg") {
         switchSong("FIGHT.ogg");
